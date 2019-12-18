@@ -6,7 +6,7 @@ public class PlayerNumber : MonoBehaviour
 {
     private string number;
 
-    private void ChangeTeam(string _number)
+    public void ChangeTeam(string _number)
     {
         if (number != _number)
         {

@@ -30,7 +30,9 @@ public class PlayerControler : MonoBehaviour
         for (int i = 0; i < tokens.Length - 1; i++)
         {
             string[] individualPlayerData = tokens[i].Split(',');
-            GameObject.Find("Player" + individualPlayerData[1]).GetComponent<PlayerTeam>().ChangeTeam(int.Parse(individualPlayerData[0]));
+            GameObject myPlayer = GameObject.Find("Player" + individualPlayerData[1]);
+            myPlayer.GetComponent<PlayerTeam>().ChangeTeam(int.Parse(individualPlayerData[0]));
+            myPlayer.transform.GetChild(0).GetComponent<PlayerNumber>().ChangeTeam(individualPlayerData[2]);
         }
 
         frameCount++;
