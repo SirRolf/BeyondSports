@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Move(float x, float y)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.position = Vector3.Lerp(transform.position, new Vector3(x * 0.01f, 0, y * 0.01f), 4);
     }
 }
