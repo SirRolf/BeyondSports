@@ -7,9 +7,28 @@ public class PlayerTeam : MonoBehaviour
     public int trackingId;
 
     [SerializeField]
-    private Material neutral ,team0Material, team1Material, team2Material;
-    [SerializeField]
+    private Material neutral ,team0Material, team1Material, team3Material;
+
     private int team;
+
+    void Awake()
+    {
+        switch (team)
+        {
+            case 0:
+                GetComponent<Renderer>().material = team0Material;
+                break;
+            case 1:
+                GetComponent<Renderer>().material = team1Material;
+                break;
+            case 3:
+                GetComponent<Renderer>().material = team3Material;
+                break;
+            default:
+                GetComponent<Renderer>().material = neutral;
+                break;
+        }
+    }
     
     public void ChangeTeam(int _team)
     {
@@ -24,8 +43,8 @@ public class PlayerTeam : MonoBehaviour
                 case 1:
                     GetComponent<Renderer>().material = team1Material;
                     break;
-                case 2:
-                    GetComponent<Renderer>().material = team2Material;
+                case 3:
+                    GetComponent<Renderer>().material = team3Material;
                     break;
                 default:
                     GetComponent<Renderer>().material = neutral;

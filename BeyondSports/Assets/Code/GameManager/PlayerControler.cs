@@ -12,6 +12,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private GameObject player, ball;
 
+    private GameObject myBall;
+
     private StreamReader reader = new StreamReader(path);
 
     void Start()
@@ -19,6 +21,7 @@ public class PlayerControler : MonoBehaviour
         GameObject newBall = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.identity);
         newBall.transform.parent = GameObject.Find("Match").transform;
         newBall.name = "Ball";
+        myBall = newBall;
         for (int i = 1; i <= 29; i++)
         {
             GameObject newPlayer = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
@@ -30,17 +33,23 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (timer <= 4)
+        if (timer <= 10)
         {
             timer += Time.deltaTime;
-            string[] tokens = ReadString(1).Split(';');
-            for (int i = 0; i < tokens.Length - 1; i++)
+            string[] playerTokens = ReadString(1).Split(';');
+            for (int i = 0; i < playerTokens.Length - 1; i++)
             {
-                string[] individualPlayerData = tokens[i].Split(',');
+                string[] individualPlayerData = playerTokens[i].Split(',');
                 GameObject myPlayer = GameObject.Find("Player" + individualPlayerData[1]);
                 myPlayer.GetComponent<PlayerTeam>().ChangeTeam(int.Parse(individualPlayerData[0]));
                 myPlayer.transform.GetChild(0).GetComponent<PlayerNumber>().ChangeTeam(individualPlayerData[2]);
-                myPlayer.GetComponent<Movement>().Move(float.Parse(individualPlayerData[3]), float.Parse(individualPlayerData[4]));
+                myPlayer.GetComponent<Movement>().Move(float.Parse(individualPlayerData[3]), 0,float.Parse(individualPlayerData[4]));
+            }
+            string[] ballTokens = ReadString(2).Split(';');
+            for (int i = 0; i < ballTokens.Length - 1; i++)
+            {
+                string[] individualBallData = ballTokens[i].Split(',');
+                myBall.GetComponent<Movement>().Move(float.Parse(individualBallData[0]), float.Parse(individualBallData[2]), float.Parse(individualBallData[1]));
             }
         }
         else

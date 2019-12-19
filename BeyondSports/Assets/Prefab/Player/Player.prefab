@@ -110,9 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingId: 0
   neutral: {fileID: 2100000, guid: 93fc07c71bdcc38498c231685c1f2e61, type: 2}
-  team0Material: {fileID: 2100000, guid: 567ee6e273a5cfc458cb86465cf32acf, type: 2}
-  team1Material: {fileID: 2100000, guid: af5714069ae92cb489fb32ce2a11fc84, type: 2}
-  team2Material: {fileID: 2100000, guid: e48182f1e1d4afc4a91620679d122370, type: 2}
+  team0Material: {fileID: 2100000, guid: af5714069ae92cb489fb32ce2a11fc84, type: 2}
+  team1Material: {fileID: 2100000, guid: e48182f1e1d4afc4a91620679d122370, type: 2}
+  team3Material: {fileID: 2100000, guid: 567ee6e273a5cfc458cb86465cf32acf, type: 2}
   team: 0
 --- !u!114 &3124540190262813630
 MonoBehaviour:
