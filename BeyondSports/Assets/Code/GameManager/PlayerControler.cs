@@ -18,10 +18,12 @@ public class PlayerControler : MonoBehaviour
 
     void Start()
     {
+        // Make a ball that is the child of Match
         GameObject newBall = Instantiate(ball, new Vector3(0, 0, 0), Quaternion.identity);
         newBall.transform.parent = GameObject.Find("Match").transform;
         newBall.name = "Ball";
         myBall = newBall;
+        // Make all the players and give them identical names
         for (int i = 1; i <= 29; i++)
         {
             GameObject newPlayer = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
@@ -33,19 +35,24 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (timer <= 10)
+        if (timer <= 4)
         {
             timer += Time.deltaTime;
+            //spliting from the ball and framecount players
             string[] playerTokens = ReadString(1).Split(';');
+            //all player changes
             for (int i = 0; i < playerTokens.Length - 1; i++)
             {
+                //splitting all components for the player
                 string[] individualPlayerData = playerTokens[i].Split(',');
                 GameObject myPlayer = GameObject.Find("Player" + individualPlayerData[1]);
                 myPlayer.GetComponent<PlayerTeam>().ChangeTeam(int.Parse(individualPlayerData[0]));
                 myPlayer.transform.GetChild(0).GetComponent<PlayerNumber>().ChangeTeam(individualPlayerData[2]);
                 myPlayer.GetComponent<Movement>().Move(float.Parse(individualPlayerData[3]), 0,float.Parse(individualPlayerData[4]));
             }
+            //splitting ball from the player and framecount
             string[] ballTokens = ReadString(2).Split(';');
+            //all ball changes
             for (int i = 0; i < ballTokens.Length - 1; i++)
             {
                 string[] individualBallData = ballTokens[i].Split(',');

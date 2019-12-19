@@ -11,6 +11,7 @@ public class PlayerTeam : MonoBehaviour
 
     private int team;
 
+    //change colors when the objects get made
     void Awake()
     {
         switch (team)
